@@ -25,6 +25,7 @@ spring:
 
 server:
   port: ${SERVER_PORT:8080}
+  forward-headers-strategy: native
 
 jwt:
   secret: ${JWT_SECRET:pawlog-secret-key-for-jwt-token-generation-minimum-256-bits}
