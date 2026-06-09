@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import api from '../api/axios'
 import useAuthStore from '../store/useAuthStore'
@@ -15,7 +15,20 @@ export default function ProfilePage() {
   const [tab, setTab] = useState('posts')
   const [showPetForm, setShowPetForm] = useState(false)
   const [petForm, setPetForm] = useState({ name: '', species: '', age: '', photoUrl: '', description: '' })
+  const [petPhotoPreview, setPetPhotoPreview] = useState(null)
+  const petFileRef = useRef()
   const isOwn = currentUser?.id === userId
+
+  const handlePetFileChange = (e) => {
+    const file = e.target.files[0]
+    if (!file) return
+    const reader = new FileReader()
+    reader.onload = (ev) => {
+      setPetPhotoPreview(ev.target.result)
+      setPetForm(p => ({ ...p, photoUrl: ev.target.result }))
+    }
+    reader.readAsDataURL(file)
+  }
 
   useEffect(() => {
     const load = async () => {
@@ -135,7 +148,20 @@ export default function ProfilePage() {
                   <input value={petForm.name} onChange={e => setPetForm(p => ({...p, name: e.target.value}))} placeholder="이름 *" required className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary-400" />
                   <input value={petForm.species} onChange={e => setPetForm(p => ({...p, species: e.target.value}))} placeholder="종 (강아지, 고양이 등)" className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary-400" />
                   <input value={petForm.age} onChange={e => setPetForm(p => ({...p, age: e.target.value}))} placeholder="나이" type="number" className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary-400" />
-                  <input value={petForm.photoUrl} onChange={e => setPetForm(p => ({...p, photoUrl: e.target.value}))} placeholder="사진 URL" className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary-400" />
+                  <div>
+                    <input type="file" accept="image/*" ref={petFileRef} onChange={handlePetFileChange} className="hidden" id="pet-photo-upload" />
+                    {petPhotoPreview ? (
+                      <div className="relative">
+                        <img src={petPhotoPreview} alt="" className="w-16 h-16 rounded-full object-cover" />
+                        <button type="button" onClick={() => { setPetPhotoPreview(null); setPetForm(p => ({...p, photoUrl: ''})); petFileRef.current.value = '' }}
+                          className="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-5 h-5 text-xs flex items-center justify-center">✕</button>
+                      </div>
+                    ) : (
+                      <label htmlFor="pet-photo-upload" className="flex items-center gap-2 border border-dashed border-gray-300 rounded-lg px-3 py-2 text-sm text-gray-400 cursor-pointer hover:border-purple-300">
+                        📷 사진 선택
+                      </label>
+                    )}
+                  </div>
                   <input value={petForm.description} onChange={e => setPetForm(p => ({...p, description: e.target.value}))} placeholder="소개" className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:border-primary-400" />
                   <div className="flex gap-2">
                     <button type="button" onClick={() => setShowPetForm(false)} className="flex-1 py-2 border border-gray-200 rounded-lg text-sm text-gray-600">취소</button>
