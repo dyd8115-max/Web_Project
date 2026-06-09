@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PawLog - 발표 슬라이드</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1280px; height: 720px;
+    font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+  }
+  .slide {
+    width: 1200px; height: 660px;
+    background: white;
+    border-radius: 24px;
+    padding: 50px 60px;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+  }
+  .header {
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 3px solid #9333ea;
+    padding-bottom: 20px; margin-bottom: 30px;
+  }
+  .title-area { display: flex; align-items: center; gap: 16px; }
+  .logo { font-size: 48px; }
+  .title { font-size: 52px; font-weight: 800; color: #1f2937; }
+  .subtitle { font-size: 18px; color: #9333ea; font-weight: 600; margin-top: 4px; }
+  .badge {
+    background: linear-gradient(135deg, #9333ea, #7e22ce);
+    color: white; padding: 8px 20px; border-radius: 50px;
+    font-size: 14px; font-weight: 600;
+  }
+  .content {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+  }
+  .card {
+    background: #f9fafb; border-radius: 16px; padding: 24px;
+    border: 1px solid #e5e7eb;
+  }
+  .card-title {
+    font-size: 15px; font-weight: 700; color: #6b7280;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 14px; display: flex; align-items: center; gap-8px;
+  }
+  .card-title span { margin-right: 8px; }
+  .feature-list { list-style: none; }
+  .feature-list li {
+    font-size: 14px; color: #374151; padding: 5px 0;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .feature-list li::before { content: "•"; color: #9333ea; font-weight: bold; font-size: 16px; }
+  .stack-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    background: white; border: 1.5px solid #e5e7eb;
+    border-radius: 8px; padding: 5px 10px;
+    font-size: 12px; font-weight: 600; color: #4b5563;
+  }
+  .tag.purple { border-color: #d8b4fe; color: #7e22ce; background: #faf5ff; }
+  .tag.blue { border-color: #bfdbfe; color: #1d4ed8; background: #eff6ff; }
+  .tag.green { border-color: #bbf7d0; color: #15803d; background: #f0fdf4; }
+  .tag.orange { border-color: #fed7aa; color: #c2410c; background: #fff7ed; }
+  .footer {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 16px; margin-top: 24px;
+  }
+  .url-box {
+    background: #1f2937; border-radius: 12px;
+    padding: 14px 20px; display: flex; align-items: center; gap: 12px;
+  }
+  .url-icon { font-size: 20px; }
+  .url-label { font-size: 11px; color: #9ca3af; font-weight: 600; text-transform: uppercase; }
+  .url-text { font-size: 14px; color: #a78bfa; font-weight: 600; margin-top: 2px; }
+  .arch-box {
+    background: #faf5ff; border: 1.5px solid #e9d5ff;
+    border-radius: 12px; padding: 14px 20px;
+  }
+  .arch-text {
+    font-size: 12px; color: #6b7280; line-height: 1.8;
+    font-family: monospace;
+  }
+  .student-info {
+    font-size: 13px; color: #9ca3af; text-align: right;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <!-- Header -->
+  <div class="header">
+    <div class="title-area">
+      <div class="logo">🐾</div>
+      <div>
+        <div class="title">PawLog</div>
+        <div class="subtitle">반려동물 SNS 플랫폼 — Web Programming 기말 프로젝트</div>
+      </div>
+    </div>
+    <div class="badge">2024년 2학기</div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <!-- 주요 기능 -->
+    <div class="card">
+      <div class="card-title"><span>✨</span> 주요 기능</div>
+      <ul class="feature-list">
+        <li>회원가입 / 로그인 (JWT)</li>
+        <li>게시물 CRUD + 해시태그</li>
+        <li>사진 파일 직접 업로드</li>
+        <li>좋아요 / 댓글 / 팔로우</li>
+        <li>팔로잉 피드 / 전체 피드</li>
+        <li>사용자 검색</li>
+        <li>반려동물 프로필 관리</li>
+      </ul>
+    </div>
+
+    <!-- 기술 스택 -->
+    <div class="card">
+      <div class="card-title"><span>⚙️</span> 기술 스택</div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:11px;color:#9ca3af;font-weight:700;margin-bottom:6px">FRONTEND</div>
+        <div class="stack-grid">
+          <span class="tag purple">React 18</span>
+          <span class="tag purple">Vite</span>
+          <span class="tag purple">Zustand</span>
+          <span class="tag purple">Tailwind CSS</span>
+        </div>
+      </div>
+      <div style="margin-bottom:10px">
+        <div style="font-size:11px;color:#9ca3af;font-weight:700;margin-bottom:6px">BACKEND</div>
+        <div class="stack-grid">
+          <span class="tag blue">Spring Boot 3</span>
+          <span class="tag blue">JWT</span>
+          <span class="tag blue">JPA</span>
+          <span class="tag blue">PostgreSQL</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:11px;color:#9ca3af;font-weight:700;margin-bottom:6px">INFRA / CI·CD</div>
+        <div class="stack-grid">
+          <span class="tag green">Docker</span>
+          <span class="tag green">Nginx</span>
+          <span class="tag orange">GitHub Actions</span>
+          <span class="tag orange">Render</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Web Storage / 아키텍처 -->
+    <div class="card">
+      <div class="card-title"><span>🗄️</span> Web Storage & DB</div>
+      <ul class="feature-list" style="margin-bottom:14px">
+        <li><b>localStorage</b> — Refresh Token</li>
+        <li><b>Zustand 메모리</b> — Access Token</li>
+        <li><b>Silent Refresh</b> 패턴 적용</li>
+        <li><b>PostgreSQL</b> — 사용자/게시물/팔로우</li>
+      </ul>
+      <div class="card-title" style="margin-top:8px"><span>🏗️</span> 아키텍처</div>
+      <div class="arch-text">
+        Browser → Nginx (port 80)<br>
+        &nbsp;&nbsp;├─ /api/** → Spring Boot :8080<br>
+        &nbsp;&nbsp;└─ / &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→ React (Static)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↕<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PostgreSQL :5432
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer URLs -->
+  <div class="footer">
+    <div class="url-box">
+      <div class="url-icon">🔗</div>
+      <div>
+        <div class="url-label">🌐 배포 URL</div>
+        <div class="url-text">https://pawlog-frontend.onrender.com</div>
+      </div>
+    </div>
+    <div class="url-box">
+      <div class="url-icon">📁</div>
+      <div>
+        <div class="url-label">GitHub Repository</div>
+        <div class="url-text">https://github.com/dyd8115-max/Web_Project</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
