@@ -22,6 +22,7 @@ public class Pet {
 
     private String species;
     private Integer age;
+    @Column(columnDefinition = "TEXT")
     private String photoUrl;
     private String description;
 

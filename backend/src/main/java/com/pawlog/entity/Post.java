@@ -22,6 +22,7 @@ public class Post {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    @Column(columnDefinition = "TEXT")
     private String imageUrl;
 
     @ElementCollection
