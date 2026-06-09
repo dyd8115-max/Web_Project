@@ -1,6 +1,10 @@
 import axios from 'axios'
 
-const BASE = import.meta.env.VITE_API_BASE_URL || ''
+const PROD_BACKEND = 'https://pawlog-backend-zc4r.onrender.com'
+const BASE = import.meta.env.VITE_API_BASE_URL ||
+  (typeof window !== 'undefined' && window.location.hostname !== 'localhost'
+    ? PROD_BACKEND
+    : '')
 
 const api = axios.create({
   baseURL: BASE + '/api',
