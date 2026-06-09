@@ -1,6 +1,9 @@
 spring:
   application:
     name: pawlog-backend
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration
   datasource:
     url: ${DATABASE_URL:jdbc:h2:mem:pawlogdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE}
     username: ${DATABASE_USERNAME:sa}
